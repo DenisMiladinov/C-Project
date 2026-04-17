@@ -4,13 +4,13 @@
 
 // Prints the task description
 void printInstructions() {
-    printf("Task: Process a 2D array A[N][N] with values in range [-500, 1000]\n");
+    printf("Task: Process a 2D array matrix[num][num] with values in range [-500, 1000]\n");
     printf("Steps:\n");
     printf("1. Input the array\n");
     printf("2. Print the array\n");
-    printf("3. Create array C with smallest elements from each column\n");
-    printf("4. Sort array C in ascending order\n");
-    printf("5. Print C before and after sorting\n\n");
+    printf("3. Create array arr with smallest elements from each column\n");
+    printf("4. Sort array arr in ascending order\n");
+    printf("5. Print arr before and after sorting\n\n");
 }
 
 // Prints the author's name
@@ -19,86 +19,86 @@ void printAuthor() {
 }
 
 // Inputs elements into the matrix with validation
-void inputArray(int A[MAX][MAX], int N) {
+void inputArray(int matrix[MAX][MAX], int num) {
     printf("Enter elements of the array:\n");
-    for (int i = 0; i < N; i++) {          // loop through rows
-        for (int j = 0; j < N; j++) {      // loop through columns
+    for (int i = 0; i < num; i++) {          // loop through rows
+        for (int j = 0; j < num; j++) {      // loop through columns
             do {
-                printf("A[%d][%d] = ", i, j);
-                scanf("%d", &A[i][j]);
-            } while (A[i][j] < -500 || A[i][j] > 1000); // validate range
+                printf("matrix[%d][%d] = ", i, j);
+                scanf("%d", &matrix[i][j]);
+            } while (matrix[i][j] < -500 || matrix[i][j] > 1000); // validate range
         }
     }
 }
 
 // Prints the matrix
-void printArray(int A[MAX][MAX], int N) {
-    printf("\nMatrix A:\n");
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            printf("%5d ", A[i][j]);  // formatted output
+void printArray(int matrix[MAX][MAX], int num) {
+    printf("\nMatrix matrix:\n");
+    for (int i = 0; i < num; i++) {
+        for (int j = 0; j < num; j++) {
+            printf("%5d ", matrix[i][j]);  // formatted output
         }
         printf("\n");
     }
 }
 
-// Creates array C with the smallest element from each column
-void createC(int A[MAX][MAX], int C[MAX], int N) {
-    for (int j = 0; j < N; j++) {     // for each column
-        int min = A[0][j];           // assume first element is smallest
-        for (int i = 1; i < N; i++) {
-            if (A[i][j] < min) {     // find smaller value
-                min = A[i][j];
+// Creates array arr with the smallest element from each column
+void createArray(int matrix[MAX][MAX], int arr[MAX], int num) {
+    for (int j = 0; j < num; j++) {     // for each column
+        int min = matrix[0][j];           // assume first element is smallest
+        for (int i = 1; i < num; i++) {
+            if (matrix[i][j] < min) {     // find smaller value
+                min = matrix[i][j];
             }
         }
-        C[j] = min;                 // store result in C
+        arr[j] = min;                 // store result in arr
     }
 }
 
-// Prints array C
-void printC(int C[MAX], int N) {
-    for (int i = 0; i < N; i++) {
-        printf("%d ", C[i]);
+// Prints array arr
+void printArray(int arr[MAX], int num) {
+    for (int i = 0; i < num; i++) {
+        printf("%d ", arr[i]);
     }
     printf("\n");
 }
 
-// Sorts array C in ascending order using bubble sort
-void sortC(int C[MAX], int N) {
-    for (int i = 0; i < N - 1; i++) {
-        for (int j = 0; j < N - i - 1; j++) {
-            if (C[j] > C[j + 1]) {  // swap if elements are in wrong order
-                int temp = C[j];
-                C[j] = C[j + 1];
-                C[j + 1] = temp;
+// Sorts array arr in ascending order using bubble sort
+void sortArray(int arr[MAX], int num) {
+    for (int i = 0; i < num - 1; i++) {
+        for (int j = 0; j < num - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {  // swap if elements are in wrong order
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
         }
     }
 }
 
 int main() {
-    int N;
-    int A[MAX][MAX];  // 2D array
-    int C[MAX];       // 1D array
+    int num;
+    int matrix[MAX][MAX];  // 2D array
+    int arr[MAX];       // 1D array
 
     printInstructions(); // print task info
     printAuthor();       // print author
 
-    printf("Enter N (size of matrix): ");
-    scanf("%d", &N);
+    printf("Enter num (size of matrix): ");
+    scanf("%d", &num);
 
-    inputArray(A, N);   // read matrix
-    printArray(A, N);   // display matrix
+    inputArray(matrix, num);   // read matrix
+    printArray(matrix, num);   // display matrix
 
-    createC(A, C, N);  // create array C
+    createC(matrix, arr, num);  // create array arr
 
-    printf("\nArray C (before sorting):\n");
-    printC(C, N);
+    printf("\nArray arr (before sorting):\n");
+    printC(arr, num);
 
-    sortC(C, N);       // sort array C
+    sortC(arr, num);       // sort array arr
 
-    printf("Array C (after sorting):\n");
-    printC(C, N);
+    printf("Array arr (after sorting):\n");
+    printC(arr, num);
 
     return 0;          // end program
 }
